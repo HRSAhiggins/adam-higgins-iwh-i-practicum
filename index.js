@@ -23,11 +23,20 @@ const PRIVATE_APP_ACCESS = '';
         'Content-Type': 'application/json'
     }
     try {
+      
         const resp = await axios.get(contacts, { headers });
+        
         const data = resp.data.results;
-        res.render('contacts', { title: 'Contacts | HubSpot APIs', data });      
+        
+        res.render('committees', { 
+          title: 'Committees', 
+          data 
+        });     
+        
     } catch (error) {
+      
         console.error(error);
+        
     }
   });
 
