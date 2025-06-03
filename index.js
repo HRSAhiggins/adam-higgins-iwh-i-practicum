@@ -11,12 +11,8 @@ app.use(express.json());
 const PRIVATE_APP_ACCESS = '';
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
-
-  app.get('/', async(req, res) => {
-    res.send('HubSpot Praticum');
-  });
-  
-  app.get('/committees', async (req, res) => {
+ 
+  app.get('/', async (req, res) => {
     const committees = 'https://api.hubspot.com/crm/v3/objects/2-10391590';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -24,7 +20,7 @@ const PRIVATE_APP_ACCESS = '';
     }
     try {
       
-        const resp = await axios.get(contacts, { headers });
+        const resp = await axios.get(committees, { headers });
         
         const data = resp.data.results;
         
