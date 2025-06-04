@@ -1,11 +1,30 @@
-//- ** This is a sample of a pug template and how it uses the data passed to it from index.js.
+html 
+  head 
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+  body   
+    .page-container 
+      .form-wrapper
+        h1.form-title Create Committee
 
-//- doctype html
-//- html 
-//-     head 
-//-         title= `${title}`
-//-         meta(name="viewport" content="width=device-width, initial-scale=1")
-//-         link(rel="stylesheet", href="/css/style.css")
-//-     body    
-//-         h1 `${title}`
-//-         
+        form(action="/submit-cobj", method="POST")
+          .form-group
+            label(for="id") Unique ID *
+            input(type="text", id="id", name="id", required)
+
+          .form-group
+            label(for="name") Name *
+            input(type="text", id="name", name="name" required)
+
+          .form-group
+            label(for="code") Code
+            input(type="text", id="code", name="code")
+            
+          .form-group
+            label(for="type") Type
+            input(type="text", id="type", name="type")            
+
+          .button-group
+            button.button(type="submit") Create committee
+            a.button.cancel(href="/") Cancel  
