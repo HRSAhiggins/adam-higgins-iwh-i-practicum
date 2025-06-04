@@ -56,52 +56,36 @@ const PRIVATE_APP_ACCESS = '';
   
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
-// * Code for Route 3 goes here
+  app.post('/submit-cobj', async (req, res) => {
+    
+    const objectType = '2-10391590';
+    const url = `https://api.hubapi.com/crm/v3/objects/${objectType}`;
+    const { id, name, code, type } = req.body;
 
-/** 
-* * This is sample code to give you a reference for how you should structure your calls. 
-
-* * App.get sample
-app.get('/contacts', async (req, res) => {
-    const contacts = 'https://api.hubspot.com/crm/v3/objects/contacts';
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
-    }
-    try {
-        const resp = await axios.get(contacts, { headers });
-        const data = resp.data.results;
-        res.render('contacts', { title: 'Contacts | HubSpot APIs', data });      
-    } catch (error) {
-        console.error(error);
-    }
-});
-
-* * App.post sample
-app.post('/update', async (req, res) => {
-    const update = {
-        properties: {
-            "favorite_book": req.body.newVal
-        }
-    }
-
-    const email = req.query.email;
-    const updateContact = `https://api.hubapi.com/crm/v3/objects/contacts/${email}?idProperty=email`;
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
+    const payload = {
+      properties: {
+        id: id,
+        name,
+        code,
+        type
+      }
     };
 
-    try { 
-        await axios.patch(updateContact, update, { headers } );
-        res.redirect('back');
-    } catch(err) {
-        console.error(err);
+    const headers = {
+      Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+      'Content-Type': 'application/json'
+    };
+
+    try {
+      const response = await axios.post(url, payload, { headers });
+      console.log('Committee Record Created:', response.data);
+      res.redirect('/');
+    } catch (error) {
+      const message = error.response?.data || error.message;
+      console.error('Error creating record:', message);
+      res.status(500).send(`Error creating record: ${JSON.stringify(message)}`);
     }
-
-});
-*/
-
+  });
 
 // * Localhost
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));
