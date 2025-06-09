@@ -14,11 +14,11 @@ html
           thead
             tr
               th Name
-              th Code
               th Type
+              th Status
           tbody
             each committee in data
               tr
                 td= committee.properties.name
-                td= committee.properties.code
                 td= committee.properties.type
+                td= committee.properties.status

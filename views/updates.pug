@@ -9,22 +9,19 @@ html
         h1.form-title Create Committee
 
         form(action="/submit-cobj", method="POST")
-          .form-group
-            label(for="id") Unique ID *
-            input(type="text", id="id", name="id", required)
 
           .form-group
             label(for="name") Name *
             input(type="text", id="name", name="name" required)
-
-          .form-group
-            label(for="code") Code
-            input(type="text", id="code", name="code")
             
           .form-group
             label(for="type") Type
-            input(type="text", id="type", name="type")            
+            input(type="text", id="type", name="type")              
 
+          .form-group
+            label(for="status") Status
+            input(type="text", id="status", name="status")
+            
           .button-group
             button.button(type="submit") Create committee
             a.button.cancel(href="/") Cancel  

@@ -15,7 +15,7 @@ const PRIVATE_APP_ACCESS = '';
   
   app.get('/', async (req, res) => {
     
-    const objectType = '2-10391590'; 
+    const objectType = '2-45888217'; 
     const limit = 100;
     const archived = false;
     const properties = 'name,code,type,status';
@@ -58,16 +58,15 @@ const PRIVATE_APP_ACCESS = '';
 
   app.post('/submit-cobj', async (req, res) => {
     
-    const objectType = '2-10391590';
+    const objectType = '2-45888217';
     const url = `https://api.hubapi.com/crm/v3/objects/${objectType}`;
-    const { id, name, code, type } = req.body;
+    const { name, type, status } = req.body;
 
     const payload = {
       properties: {
-        id: id,
         name,
-        code,
-        type
+        type,
+        status
       }
     };
 
